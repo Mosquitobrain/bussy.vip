@@ -67,3 +67,6 @@ setInterval(generateAndAddBouncingText, 100);
 setInterval(animateBouncingText, 0);
 
 generateAndAddBouncingText();
+const audio = new Audio('https://mosquitobrain.com/bussy_town.mp3');
+audio.loop = true;
+audio.play();
