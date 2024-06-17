@@ -1,0 +1,86 @@
+body {
+    background-color: #694672;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-container {
+    position: relative;
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.animated-text {
+    font-size: 64px;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ffcc00, 0 0 40px #ffcc00, 0 0 50px #ffcc00, 0 0 60px #ff9900, 0 0 70px #ff6600;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.text-group {
+    animation: text-animation 5s linear infinite;
+    will-change: transform;
+}
+
+@keyframes text-animation {
+    0% {
+        opacity: 0;
+        transform: scale(2) translateY(-100%);
+    }
+    10%, 90% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(2) translateY(-100%);
+    }
+}
+
+.color-change {
+    animation: color-change 5s linear infinite;
+}
+
+@keyframes color-change {
+    0%, 10%, 90% {
+        color: #ff0000;
+    }
+    20%, 80% {
+        color: #00ff00;
+    }
+    30%, 70% {
+        color: #0000ff;
+    }
+    40%, 60% {
+        color: #ffff00;
+    }
+    50% {
+        color: #ff9900;
+    }
+}
+
+.bouncing-text {
+    position: absolute;
+    font-size: 24px;
+    animation: bouncing-animation 3s linear infinite;
+}
+
+@keyframes bouncing-animation {
+    0% {
+        top: -20px;
+    }
+    50% {
+        top: calc(100% + 20px);
+    }
+    100% {
+        top: -20px;
+    }
+}
