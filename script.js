@@ -1,21 +1,29 @@
+
+// Get all text elements and store them in an array
 const textElements = document.querySelectorAll('.text-group');
 let textIndex = 0;
 
 function generateText() {
-    const textContainer = document.querySelector('.text-container');
-    for (let i = 0; i < 10; i++) {
-        const textElement = document.createElement('span');
-        textElement.classList.add('animated-text', 'color-change');
-        textElement.textContent = 'Bussy.vip';
-        textContainer.appendChild(textElement);
+  // Create a container element for the text elements
+    const textContainer = document.createElement('div');
+    textContainer.classList.add('text-container');
+
+    // Loop through each text group and create a span element for each letter
+    for (let i = 0; i < textElements.length; i++) {
+        const textGroup = textElements[i];
+        const letters = textGroup.innerHTML.split('');
+
+        for (let j = 0; j < letters.length; j++) {
+            const letter = letters[j];
+            const spanElement = document.createElement('span');
+            spanElement.classList.add('animated-text', 'color-change');
+            spanElement.innerHTML = letter;
+            textContainer.appendChild(spanElement);
+        }
     }
 
-    for (let i = 0; i < 5; i++) {
-        const bouncingTextElement = document.createElement('span');
-        bouncingTextElement.classList.add('bouncing-text');
-        bouncingTextElement.textContent = 'Bussy.vip';
-        textContainer.appendChild(bouncingTextElement);
-    }
+    // Add the container element to the DOM
+    document.body.appendChild(textContainer);
 }
 
 function animateText() {
@@ -23,6 +31,28 @@ function animateText() {
         group.style.top = `${index * 20}px`;
         group.style.transformOrigin = `center top ${index * 30}px`;
         group.style.animationDelay = `${index / 10}s`;
+    });
+}
+
+function generateAndAddBouncingText() {
+    // Create a bouncing text element and add it to the DOM
+    const bouncingTextElement = document.createElement('span');
+    bouncingTextElement.classList.add('bouncing-text');
+    bouncingTextElement.innerHTML = 'Bussy.vip';
+
+    // Generate a random color for the text element
+    const colors = ['#ff0000', '#00ff00', '#0000ff'];
+    const randomColorIndex = Math.floor(Math.random() * 3);
+    bouncingTextElement.style.color = colors[randomColorIndex];
+
+    document.body.appendChild(bouncingTextElement);
+}
+
+function animateBouncingText() {
+    // Get all bouncing text elements and loop through them
+    const bouncingTextElements = document.querySelectorAll('.bouncing-text');
+    bouncingTextElements.forEach((element, index) => {
+        element.style.animationDelay = `${index / 10}s`;
     });
 }
 
@@ -38,32 +68,8 @@ setInterval(() => {
 const textContainer = document.querySelector('.text-container');
 let lastTextPosition = null;
 
-function generateAndAddBouncingText() {
-    const bouncingTextElement = document.createElement('span');
-    bouncingTextElement.classList.add('bouncing-text');
-    bouncingTextElement.textContent = 'Bussy.vip';
-    textContainer.appendChild(bouncingTextElement);
-
-    let textPositionX, textPositionY;
-    do {
-        textPositionX = Math.floor(Math.random() * 80) + 'vw';
-        textPositionY = Math.floor(Math.random() * 60) + 'vh';
-    } while (textPositionX === lastTextPosition && textPositionY === lastTextPosition);
-
-    bouncingTextElement.style.top = textPositionY;
-    bouncingTextElement.style.left = textPositionX;
-
-    lastTextPosition = `${textPositionX}, ${textPositionY}`;
-}
-
-function animateBouncingText() {
-    const bouncingTextElements = document.querySelectorAll('.bouncing-text');
-    bouncingTextElements.forEach((element, index) => {
-        element.style.animationDelay = `${index / 10}s`;
-    });
-}
+generateAndAddBouncingText();
+animateBouncingText();
 
 setInterval(generateAndAddBouncingText, 100);
 setInterval(animateBouncingText, 0);
-
-generateAndAddBouncingText();
